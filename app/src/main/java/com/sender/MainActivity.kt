@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         registerButton=findViewById(R.id.register_button_register)
         alreadyHaveAnAccount=findViewById(R.id.backToRegister_textview_login)
 
+        
+
         registerButton.setOnClickListener {
             Log.d("MainActivity","Email is : ${email.text}")
             Log.d("MainActivity","Password is : ${password.text}")
