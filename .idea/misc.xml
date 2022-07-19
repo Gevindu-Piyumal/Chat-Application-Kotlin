@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable/rounded_button.xml" value="0.254" />
+        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable/rounded_edittext_register_login.xml" value="0.128" />
+        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable/rounded_select_photo_button.xml" value="0.254" />
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/layout/activity_main.xml" value="0.264" />
       </map>
     </option>
   </component>
