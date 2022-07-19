@@ -7,12 +7,15 @@
     android:background="#69F0AE"
     tools:context=".RegisterActivity">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/selectPhoto_imageView_register"
         android:layout_width="150dp"
         android:layout_height="150dp"
         tools:src="@tools:sample/avatars"
         android:contentDescription="Profile Photo"
+        app:civ_border_width="2dp"
+        android:src="@mipmap/ic_launcher"
+        android:backgroundTint="#602323"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

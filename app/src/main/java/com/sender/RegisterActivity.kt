@@ -11,11 +11,14 @@ import android.util.Log
 import android.widget.*
 import androidx.activity.result.ActivityResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
-    private lateinit var selectPhoto: ImageView
+    private lateinit var selectPhoto: CircleImageView
+    private lateinit var username: EditText
     private lateinit var email:EditText
     private lateinit var password:EditText
     private lateinit var registerButton: Button
@@ -27,6 +30,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         selectPhoto = findViewById(R.id.selectPhoto_imageView_register)
+        username = findViewById(R.id.username_edittext_register)
         email=findViewById(R.id.email_edittext_register)
         password=findViewById(R.id.password_edittext_register)
         registerButton=findViewById(R.id.register_button_register)
@@ -101,8 +105,26 @@ class RegisterActivity : AppCompatActivity() {
 
                 ref.downloadUrl.addOnSuccessListener {
                     Log.d("debugMain", "Download Link : $it")
+
+                    saveUserToFirebaseDatabase(it.toString())
                 }
             }
     }
 
+    private fun saveUserToFirebaseDatabase(profileImageUrl:String){
+        val uid = FirebaseAuth.getInstance().uid?:""
+        val ref = FirebaseDatabase.getInstance().getReference("users/$uid")
+
+        val user = User(uid, username.text.toString(),profileImageUrl)
+        ref.setValue(user)
+            .addOnSuccessListener {
+                Log.d("debugMain", "Finally saving user to firebase database")
+            }
+            .addOnFailureListener {
+                Log.d("debugMain", "${it.message}")
+            }
+    }
+
 }
+
+class User(val uid:String, val username:String, val profileImageUrl:String)
