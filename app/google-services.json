@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "823485387350",
+    "project_id": "mad-sender",
+    "storage_bucket": "mad-sender.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823485387350:android:20a7be45db9eb2dd36a1f7",
+        "android_client_info": {
+          "package_name": "com.sender"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "823485387350-ap5nt64711aqj3lukr1kpvitjp63kah9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAd5VA9O4DJSNqfzaUSSZJB5mqcVbVIP08"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "823485387350-ap5nt64711aqj3lukr1kpvitjp63kah9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

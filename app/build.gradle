@@ -1,7 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-}
+
+
+    id 'com.google.gms.google-services'}
 
 android {
     compileSdk 32
@@ -32,6 +34,17 @@ android {
 }
 
 dependencies {
+
+    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-storage-ktx'
+    implementation 'com.google.firebase:firebase-database-ktx'
+
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.xwray:groupie:2.1.0'
+    implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
