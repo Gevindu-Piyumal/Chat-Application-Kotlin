@@ -1,7 +1,9 @@
 buildscript {
     repositories {
         // Check that you have the following line (if not, add it):
+        jcenter()
         google()  // Google's Maven repository
+
     }
     dependencies {
         // Add this line
@@ -26,7 +28,11 @@ task clean(type: Delete) {
 allprojects {
 
     repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io"}
         // Check that you have the following line (if not, add it):
+//        jcenter()
 //        google()  // Google's Maven repository
     }
 }
