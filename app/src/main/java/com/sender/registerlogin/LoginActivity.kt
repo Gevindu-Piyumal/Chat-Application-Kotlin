@@ -1,5 +1,6 @@
-package com.sender
+package com.sender.registerlogin
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.sender.R
+import com.sender.messages.LatestMessagesActivity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -35,6 +38,9 @@ class LoginActivity : AppCompatActivity() {
 
                     } else {
                         Toast.makeText(baseContext, "Sign in Success.", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this,LatestMessagesActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
                         Log.d("debugMain", "UID : ${task.result.user?.uid}")
                     }
                 }

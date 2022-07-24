@@ -1,18 +1,18 @@
 package com.sender
 
 import android.app.Activity
-import android.content.ContentResolver
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.widget.*
-import androidx.activity.result.ActivityResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.sender.messages.LatestMessagesActivity
+import com.sender.models.User
+import com.sender.registerlogin.LoginActivity
 import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
 
@@ -51,7 +51,7 @@ class RegisterActivity : AppCompatActivity() {
         alreadyHaveAnAccount.setOnClickListener {
             Log.d("debugMain", "Try to show login activity")
 
-            val intent = Intent(this,LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
@@ -120,7 +120,7 @@ class RegisterActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 Log.d("debugMain", "Finally saving user to firebase database")
 
-                val intent = Intent(this,LatestMessagesActivity::class.java)
+                val intent = Intent(this, LatestMessagesActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
@@ -131,6 +131,3 @@ class RegisterActivity : AppCompatActivity() {
 
 }
 
-class User(val uid:String, val username:String, val profileImageUrl:String){
-    constructor():this("","","")
-}
