@@ -1,9 +1,13 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-
+    id 'kotlin-android-extensions'
 
     id 'com.google.gms.google-services'}
+
+androidExtensions{
+    experimental = true
+}
 
 android {
     compileSdk 32
@@ -45,6 +49,8 @@ dependencies {
     implementation 'com.xwray:groupie:2.1.0'
     implementation 'com.squareup.picasso:picasso:2.8'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    api 'com.google.android.material:material:1.1.0-alpha06'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
