@@ -26,7 +26,7 @@
         android:background="@drawable/rounded_edittext_register_login"
         android:maxWidth="250dp"
         android:padding="16dp"
-        android:text="This is my message. Lets see what it will do when the text is too long"
+        android:text=""
         app:layout_constraintEnd_toStartOf="@+id/imageView_toRow"
         app:layout_constraintTop_toTopOf="parent" />
 

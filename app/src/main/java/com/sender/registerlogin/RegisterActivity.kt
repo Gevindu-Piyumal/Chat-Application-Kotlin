@@ -3,10 +3,14 @@ package com.sender
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
+import android.view.WindowManager
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -15,6 +19,7 @@ import com.sender.models.User
 import com.sender.registerlogin.LoginActivity
 import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
+
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var selectPhoto: CircleImageView
@@ -66,7 +71,6 @@ class RegisterActivity : AppCompatActivity() {
             selectedPhotoUri = data.data
             //val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,selectedPhotoUri)//
             selectPhoto.setImageURI(selectedPhotoUri)
-
         }
     }
 
@@ -74,23 +78,27 @@ class RegisterActivity : AppCompatActivity() {
         Log.d("debugMain","Email is : ${email.text}")
         Log.d("debugMain","Password is : ${password.text}")
 
-        if(email.text.isEmpty()||password.text.isEmpty()) return
+        if(username.text.isEmpty() || email.text.isEmpty()||password.text.isEmpty()){
+            Toast.makeText(baseContext, "Please fill all the fields!", Toast.LENGTH_SHORT).show()
+            return
+        }
+        else{
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
+                .addOnCompleteListener(this) { task ->
+                    if (!task.isSuccessful) {
+                        Toast.makeText(baseContext, "Authentication Failed.", Toast.LENGTH_SHORT).show()
+                        return@addOnCompleteListener
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
-            .addOnCompleteListener(this) { task ->
-                if (!task.isSuccessful) {
-                    Toast.makeText(baseContext, "Authentication Failed.", Toast.LENGTH_SHORT).show()
-                    return@addOnCompleteListener
-
-                } else {
-                    Toast.makeText(baseContext, "Authentication Success.", Toast.LENGTH_SHORT).show()
-                    Log.d("debugMain", "UID : ${task.result.user?.uid}")
-                    uploadImageToFirebaseStorage()
+                    } else {
+                        Toast.makeText(baseContext, "Authentication Success.", Toast.LENGTH_SHORT).show()
+                        Log.d("debugMain", "UID : ${task.result.user?.uid}")
+                        uploadImageToFirebaseStorage()
+                    }
                 }
-            }
-            .addOnFailureListener {
-                Log.d("debugMain", "${it.message}")
-            }
+                .addOnFailureListener {
+                    Log.d("debugMain", "${it.message}")
+                }
+        }
     }
 
     private fun uploadImageToFirebaseStorage() {
@@ -112,7 +120,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun saveUserToFirebaseDatabase(profileImageUrl:String){
-        val uid = FirebaseAuth.getInstance().uid?:""
+        val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("users/$uid")
 
         val user = User(uid, username.text.toString(),profileImageUrl)

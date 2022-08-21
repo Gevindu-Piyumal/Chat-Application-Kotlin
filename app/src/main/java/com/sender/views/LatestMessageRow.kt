@@ -1,11 +1,15 @@
 package com.sender.views
 
+import android.app.Activity
+import android.view.View
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.sender.R
+import com.sender.messages.LatestMessagesActivity
 import com.sender.models.ChatMessage
 import com.sender.models.User
 import com.squareup.picasso.Picasso
@@ -29,7 +33,8 @@ class LatestMessageRow(val chatMessage: ChatMessage): Item<ViewHolder>(){
                 chatPartnerUser = snapshot.getValue(User::class.java)
                 if (chatPartnerUser != null) {
                     viewHolder.itemView.username_textview_latestMessageRow.text= chatPartnerUser!!.username
-                    Picasso.get().load(chatPartnerUser!!.profileImageUrl).into(viewHolder.itemView.imageView_latestMessage)
+                    //Picasso.get().load(chatPartnerUser!!.profileImageUrl).into(viewHolder.itemView.imageView_latestMessage)
+                    Glide.with(viewHolder.itemView.imageView_latestMessage).load(chatPartnerUser!!.profileImageUrl).into(viewHolder.itemView.imageView_latestMessage)
                 }
             }
             override fun onCancelled(error: DatabaseError) {

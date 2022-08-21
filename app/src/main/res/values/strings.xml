@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Sender</string>
+    <string name="message_typing_hint">Enter Message</string>
+    <string name="send_button_text">Send</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button_text">Login</string>
+    <string name="back_to_register_text">Don\'t have an account?</string>
+    <string name="profile_photo_description">Profile Photo</string>
+    <string name="username_hint">Username</string>
+    <string name="register_button_text">Register</string>
+    <string name="already_have_an_account_text">Already have an account?</string>
 </resources>

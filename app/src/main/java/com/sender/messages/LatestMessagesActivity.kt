@@ -15,6 +15,7 @@ import com.sender.R
 import com.sender.RegisterActivity
 import com.sender.models.ChatMessage
 import com.sender.models.User
+import com.sender.registerlogin.LoginActivity
 import com.sender.views.LatestMessageRow
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
@@ -51,12 +52,27 @@ class LatestMessagesActivity : AppCompatActivity() {
 
     val latestMessagesMap = HashMap<String,ChatMessage>()
 
-    private fun refreshRecyclerViewMessages(){
+    //updated refreshRecyclerViewMessages
+    private fun refreshRecyclerViewMessages() {
         adapter.clear()
-        latestMessagesMap.values.forEach {
+        val sortedMap = HashMap<Long, ChatMessage>()
+        //new hashMap
+
+        latestMessagesMap.forEach {
+            sortedMap[0 - it.value.timeStamp] = it.value
+            //add to new hashMap with 0 - timestamp as key
+        }
+        sortedMap.toSortedMap().values.forEach {
             adapter.add(LatestMessageRow(it))
         }
     }
+
+//    private fun refreshRecyclerViewMessages(){
+//        adapter.clear()
+//        latestMessagesMap.values.forEach {
+//            adapter.add(LatestMessageRow(it))
+//        }
+//    }
 
     private fun listenForLatestMessages(){
         val fromId = FirebaseAuth.getInstance().uid
@@ -66,8 +82,6 @@ class LatestMessagesActivity : AppCompatActivity() {
                 val chatMessage = snapshot.getValue(ChatMessage::class.java) ?: return
                 latestMessagesMap[snapshot.key!!]=chatMessage
                 refreshRecyclerViewMessages()
-
-
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -122,7 +136,7 @@ class LatestMessagesActivity : AppCompatActivity() {
             }
             R.id.menu_sign_out ->{
                 FirebaseAuth.getInstance().signOut()
-                val intent = Intent(this, RegisterActivity::class.java)
+                val intent = Intent(this, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
@@ -135,3 +149,4 @@ class LatestMessagesActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 }
+

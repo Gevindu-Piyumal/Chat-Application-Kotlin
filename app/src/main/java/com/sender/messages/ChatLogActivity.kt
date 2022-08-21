@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -24,16 +25,16 @@ import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
 
 class ChatLogActivity : AppCompatActivity() {
+    private lateinit var chatLogRecyclerView : RecyclerView
+    private lateinit var typingEditTextChatLog: EditText
+    private lateinit var sendButtonChatLog: Button
+
     companion object{
         val TAG = "debugChatLog"
     }
 
     val adapter = GroupAdapter<ViewHolder>()
     var fromUser:User?=null
-
-    private lateinit var chatLogRecyclerView : RecyclerView
-    private lateinit var typingEditTextChatLog: EditText
-    private lateinit var sendButtonChatLog: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,12 +105,12 @@ class ChatLogActivity : AppCompatActivity() {
     private fun performSendMessage(){
         val text = typingEditTextChatLog.text.toString()
         val fromId=FirebaseAuth.getInstance().uid
-        //val user = intent.getParcelableExtra<User>("USER_KEY")
+
         val toId= fromUser?.uid
 
         if(fromId ==null) return
         if(toId ==null) return
-//        val reference= FirebaseDatabase.getInstance().getReference("/messages").push()
+
         val reference= FirebaseDatabase.getInstance().getReference("/user-messages/$fromId/$toId").push()
         val toReference= FirebaseDatabase.getInstance().getReference("/user-messages/$toId/$fromId").push()
         val chatMessage = ChatMessage(reference.key!!,text,fromId,toId,System.currentTimeMillis()/1000)
@@ -134,7 +135,8 @@ class ChatFromItem(val text:String,val user: User):Item<ViewHolder>(){
         viewHolder.itemView.textView_fromRow.text=text
         val uri = user.profileImageUrl
         val targetImageView = viewHolder.itemView.imageView_fromRow
-        Picasso.get().load(uri).into(targetImageView)
+        //Picasso.get().load(uri).into(targetImageView)
+        Glide.with(targetImageView).load(uri).into(targetImageView)
     }
 
     override fun getLayout(): Int {
@@ -148,7 +150,8 @@ class ChatToItem(val text:String, val user:User):Item<ViewHolder>(){
         viewHolder.itemView.textView_toRow.text=text
         val uri = user.profileImageUrl
         val targetImageView = viewHolder.itemView.imageView_toRow
-        Picasso.get().load(uri).into(targetImageView)
+        //Picasso.get().load(uri).into(targetImageView)
+        Glide.with(targetImageView).load(uri).into(targetImageView)
     }
 
     override fun getLayout(): Int {
