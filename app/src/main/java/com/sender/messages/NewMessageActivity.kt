@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.SearchView
 import android.widget.TextView
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -31,6 +32,7 @@ class NewMessageActivity : AppCompatActivity() {
 
         search = findViewById(R.id.search_searchView_newMessage)
         newMessageRecyclerView = findViewById(R.id.recyclerView_newMessage)
+        newMessageRecyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         search.clearFocus()
 
         supportActionBar?.title = "Select User"

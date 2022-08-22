@@ -82,6 +82,10 @@ class RegisterActivity : AppCompatActivity() {
             Toast.makeText(baseContext, "Please fill all the fields!", Toast.LENGTH_SHORT).show()
             return
         }
+        else if (password.text.length<6){
+            Toast.makeText(baseContext, "Password should contain at least 6 characters!", Toast.LENGTH_SHORT).show()
+            return
+        }
         else{
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
                 .addOnCompleteListener(this) { task ->
