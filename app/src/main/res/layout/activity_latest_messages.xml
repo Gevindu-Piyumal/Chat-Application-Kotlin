@@ -23,7 +23,7 @@
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/latest_message_nav_menu"
             app:navigationIcon="@drawable/ic_sender_logo_new"
-            android:layout_marginHorizontal="10dp"
+
             />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -43,14 +43,13 @@
         android:id="@+id/new_chat_fab_latest_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="@color/white"
+        android:clickable="true"
         android:text="New Chat"
         app:icon="@drawable/ic_message_black_48dp"
-         />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

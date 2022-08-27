@@ -35,7 +35,6 @@ class LatestMessagesActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_latest_messages)
 
-
         latestMessageTopAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.latest_message_nav_menu_sign_out -> {
