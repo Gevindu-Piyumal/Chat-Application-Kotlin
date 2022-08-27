@@ -6,12 +6,19 @@
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.128" />
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable/ic_dp_background.xml" value="0.128" />
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable/ic_launcher_background.xml" value="0.128" />
+        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable/ic_logout_black_48dp.xml" value="0.346" />
+        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable/ic_message_black_48dp.xml" value="0.346" />
+        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable/ic_new_sender_logo.xml" value="0.346" />
+        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable/ic_send_black_48dp.xml" value="0.346" />
+        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable/ic_sender_logo.xml" value="0.346" />
+        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable/ic_sender_logo_new.xml" value="0.176" />
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable/rounded_button.xml" value="0.254" />
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable/rounded_edittext_register_login.xml" value="0.128" />
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable/rounded_select_photo_button.xml" value="0.254" />
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/drawable/searchview_background.xml" value="0.324" />
+        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/font/app_title.xml" value="0.39166666666666666" />
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/layout/activity_chat_log.xml" value="0.25" />
-        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/layout/activity_latest_messages.xml" value="0.25" />
+        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/layout/activity_latest_messages.xml" value="0.264" />
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/layout/activity_new_message.xml" value="0.33" />
@@ -20,8 +27,10 @@
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/layout/chat_to_row.xml" value="0.25" />
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/layout/latest_message_row.xml" value="0.33" />
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/layout/user_row_new_message.xml" value="0.2151268115942029" />
-        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/menu/nav_menu.xml" value="0.1" />
+        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/menu/latest_message_nav_menu.xml" value="0.264" />
+        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/menu/nav_menu.xml" value="0.264" />
         <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/mipmap-anydpi-v26/ic_dp.xml" value="0.121" />
+        <entry key="..\:/Users/gevin/Desktop/Sender/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.346" />
       </map>
     </option>
   </component>

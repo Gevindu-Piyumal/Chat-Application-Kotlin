@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".messages.ChatLogActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".messages.ChatLogActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_chatlog"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/teal_200"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/typing_eddittext_chatlog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -26,26 +25,30 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:paddingHorizontal="5dp"
+        android:autofillHints=""
+        android:background="@color/white"
         android:ems="10"
         android:hint="@string/message_typing_hint"
-        android:background="@color/white"
         android:inputType="textCapSentences"
+        android:paddingHorizontal="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/send_button_chatlog"
-        app:layout_constraintStart_toStartOf="parent"
-        android:autofillHints="" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/send_button_chatlog"
+        style="?attr/materialIconButtonFilledTonalStyle"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="@android:color/holo_orange_dark"
-        android:text="@string/send_button_text"
-        app:cornerRadius="20dp"
+        android:backgroundTint="@color/FloralWhite"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="12dp"
+        app:icon="@drawable/ic_send_black_48dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview_chatlog" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
