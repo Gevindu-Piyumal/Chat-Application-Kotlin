@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/googleg_standard_color_18"
-        app:civ_border_width="2dp" />
+        />
 
     <TextView
         android:id="@+id/textView_fromRow"
@@ -24,7 +24,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:maxWidth="250dp"
-        android:background="@drawable/rounded_edittext_register_login"
+        android:background="@drawable/chat_from_text_background"
         android:padding="16dp"
         android:text=""
         app:layout_constraintStart_toEndOf="@+id/imageView_fromRow"

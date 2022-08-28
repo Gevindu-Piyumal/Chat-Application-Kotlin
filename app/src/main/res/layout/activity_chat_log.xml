@@ -7,30 +7,50 @@
     android:background="@color/white"
     tools:context=".messages.ChatLogActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?attr/colorPrimary"
+        android:fitsSystemWindows="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/chatLogTopAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Username"
+            app:titleMarginStart="5dp"
+            app:navigationIcon="@drawable/ic_arrow_back_black_48dp"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_chatlog"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/typing_eddittext_chatlog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout3" />
 
     <EditText
         android:id="@+id/typing_eddittext_chatlog"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         android:autofillHints=""
-        android:background="@color/white"
+        android:background="@drawable/typing_background"
         android:ems="10"
         android:hint="@string/message_typing_hint"
         android:inputType="textCapSentences"
-        android:paddingHorizontal="5dp"
+        android:paddingLeft="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/send_button_chatlog"
         app:layout_constraintStart_toStartOf="parent" />
@@ -38,17 +58,19 @@
     <Button
         android:id="@+id/send_button_chatlog"
         style="?attr/materialIconButtonFilledTonalStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/FloralWhite"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="12dp"
+        android:backgroundTint="@color/BlueViolet"
         app:icon="@drawable/ic_send_black_48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerview_chatlog" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview_chatlog"
+        android:contentDescription="send button"/>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
