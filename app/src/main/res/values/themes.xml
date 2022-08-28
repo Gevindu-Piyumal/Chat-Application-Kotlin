@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.Sender" parent="Theme.Material3.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/AntiqueWhite</item>
-        <item name="colorPrimaryVariant">@color/WhiteSmoke</item>
+        <item name="colorPrimary">@color/LightGoldenrodYellow</item>
+        <item name="colorPrimaryVariant">@color/Aquamarine</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/PaleGreen</item>
@@ -13,5 +13,12 @@
 <!--        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>-->
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
+
     </style>
+
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="buttonBarNeutralButtonStyle">@drawable/rounded_button</item>
+        <item name="buttonBarPositiveButtonStyle">@drawable/rounded_button</item>
+    </style>
+
 </resources>

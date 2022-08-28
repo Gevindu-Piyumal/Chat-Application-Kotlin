@@ -3,9 +3,14 @@ package com.sender.messages
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.dialog.MaterialDialogs
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
@@ -148,10 +153,21 @@ class LatestMessagesActivity : AppCompatActivity(){
     }
 
     private fun signOut(){
-        FirebaseAuth.getInstance().signOut()
-        val intent = Intent(this, LoginActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-        startActivity(intent)
+        MaterialAlertDialogBuilder(this,R.style.ThemeOverlay_App_MaterialAlertDialog)
+            .setMessage("Are you sure you would like to sign out of your Sender account?")
+            .setTitle("Sign out from Sender")
+            .setIcon(R.drawable.ic_logout_black_48dp)
+            .setNeutralButton("No"){dialog,id->
+                dialog.dismiss()
+            }
+            .setPositiveButton("Yes"){dialog,id->
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
+
+        .show()
     }
 }
 
