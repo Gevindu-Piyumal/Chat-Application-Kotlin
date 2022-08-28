@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:maxHeight="50dp"
         android:layout_marginStart="24dp"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnPrimary"
         android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
         app:layout_constraintBottom_toBottomOf="@+id/profilepic_imageview_userRowNewMessage"
         app:layout_constraintStart_toEndOf="@+id/profilepic_imageview_userRowNewMessage"

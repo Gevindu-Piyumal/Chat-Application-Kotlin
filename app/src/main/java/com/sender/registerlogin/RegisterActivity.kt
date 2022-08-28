@@ -45,8 +45,6 @@ class RegisterActivity : AppCompatActivity() {
         registerButton=findViewById(R.id.register_button_register)
         alreadyHaveAnAccount=findViewById(R.id.backToRegister_textview_login)
 
-        //selectedPhotoUri
-
 
         selectPhoto.setOnClickListener {
             Log.d("debugMain","Try to show photo selector")

@@ -1,19 +1,37 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Sender" parent="Theme.Material3.Light.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/LightGoldenrodYellow</item>
-        <item name="colorPrimaryVariant">@color/Aquamarine</item>
+
+        <item name="colorPrimary">@color/AliceBlue</item>
         <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/PaleGreen</item>
-        <item name="colorSecondaryVariant">@color/yellow</item>
-        <item name="colorOnSecondary">@color/black</item>`
+        <item name="colorPrimaryContainer">@color/LightCyan</item>
+        <item name="colorOnPrimaryContainer">@color/black</item>
+
+        <item name="colorSecondary">@color/LightSkyBlue</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondaryContainer">@color/LightBlue</item>
+        <item name="colorOnSecondaryContainer">@color/black</item>
+
+        <item name="colorTertiary">@color/white</item>
+        <item name="colorOnTertiary">@color/black</item>
+        <item name="colorTertiaryContainer">@color/GreenYellow</item>
+        <item name="colorOnTertiaryContainer">@color/GreenYellow</item>
+
+
+<!--        &lt;!&ndash; Primary brand color. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/LightGoldenrodYellow</item>-->
+<!--        <item name="colorPrimaryVariant">@color/Aquamarine</item>-->
+<!--        <item name="colorOnPrimary">@color/black</item>-->
+<!--        &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
+<!--        <item name="colorSecondary">@color/PaleGreen</item>-->
+<!--        <item name="colorSecondaryVariant">@color/yellow</item>-->
+<!--        <item name="colorOnSecondary">@color/black</item>`-->
+
+
         <!-- Status bar color. -->
 <!--        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>-->
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
-
     </style>
 
     <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">

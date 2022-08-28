@@ -27,6 +27,7 @@
         android:background="@drawable/chat_from_text_background"
         android:padding="16dp"
         android:text=""
+        android:textColor="?attr/colorOnPrimary"
         app:layout_constraintStart_toEndOf="@+id/imageView_fromRow"
         app:layout_constraintTop_toTopOf="parent" />
 
