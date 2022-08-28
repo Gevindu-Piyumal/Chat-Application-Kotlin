@@ -36,12 +36,16 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+
         selectPhoto = findViewById(R.id.selectPhoto_imageView_register)
         username = findViewById(R.id.username_edittext_register)
         email=findViewById(R.id.email_edittext_register)
         password=findViewById(R.id.password_edittext_register)
         registerButton=findViewById(R.id.register_button_register)
         alreadyHaveAnAccount=findViewById(R.id.backToRegister_textview_login)
+
+        //selectedPhotoUri
 
 
         selectPhoto.setOnClickListener {
@@ -79,9 +83,14 @@ class RegisterActivity : AppCompatActivity() {
     private fun performRegister(){
         Log.d("debugMain","Email is : ${email.text}")
         Log.d("debugMain","Password is : ${password.text}")
+        Log.d("debugMain","uri is : ${selectedPhotoUri}")
 
         if(username.text.isEmpty() || email.text.isEmpty()||password.text.isEmpty()){
             Toast.makeText(baseContext, "Please fill all the fields!", Toast.LENGTH_SHORT).show()
+            return
+        }
+        else if (selectedPhotoUri==null){
+            Toast.makeText(baseContext, "Please select a photo from your gallery", Toast.LENGTH_SHORT).show()
             return
         }
         else if (password.text.length<6){

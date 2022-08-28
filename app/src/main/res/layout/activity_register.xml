@@ -4,33 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#69F0AE"
     tools:context=".RegisterActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?attr/colorPrimary"
+        android:fitsSystemWindows="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/registerTopAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_sender_logo_new" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Welcome to Sender"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout5" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/selectPhoto_imageView_register"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        tools:src="@tools:sample/avatars"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="8dp"
         android:contentDescription="@string/profile_photo_description"
-        app:civ_border_width="2dp"
-        android:src="@mipmap/ic_launcher"
-        android:backgroundTint="#602323"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/ic_avatar_svgrepo_com"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/username_edittext_register"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:autofillHints=""
         android:background="@drawable/rounded_edittext_register_login"
         android:ems="10"
@@ -38,7 +61,7 @@
         android:inputType="textCapWords"
         android:paddingLeft="16dp"
         android:text=""
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnPrimary"
         android:textColorHint="#757575"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +82,7 @@
         android:inputType="textEmailAddress"
         android:paddingLeft="16dp"
         android:text=""
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnPrimary"
         android:textColorHint="#757575"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/username_edittext_register"
@@ -80,7 +103,7 @@
         android:inputType="textPassword"
         android:paddingLeft="16dp"
         android:text=""
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnPrimary"
         android:textColorHint="#757575"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/email_edittext_register"
@@ -94,7 +117,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_button"
         android:text="@string/register_button_text"
@@ -109,12 +132,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/already_have_an_account_text"
-        android:textColor="#00695C"
+        android:textColor="?attr/colorOnPrimary"
         app:layout_constraintEnd_toEndOf="@+id/register_button_register"
         app:layout_constraintStart_toStartOf="@+id/register_button_register"
         app:layout_constraintTop_toBottomOf="@+id/register_button_register" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

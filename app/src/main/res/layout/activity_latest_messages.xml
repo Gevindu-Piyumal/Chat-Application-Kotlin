@@ -23,7 +23,6 @@
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/latest_message_nav_menu"
             app:navigationIcon="@drawable/ic_sender_logo_new"
-
             />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -45,7 +44,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="?attr/colorPrimary"
+        android:textColor="?attr/colorOnPrimary"
+        app:iconTint="?attr/colorOnPrimary"
         android:clickable="true"
         android:text="New Chat"
         app:icon="@drawable/ic_message_black_48dp"
