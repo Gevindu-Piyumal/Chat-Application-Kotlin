@@ -7,7 +7,7 @@
  - Firebase realtime database to store messages
  - Google Material Design for user interface
 
-## Feature
+## Additional Features
 
  - Offline capability
  - Dark mode
