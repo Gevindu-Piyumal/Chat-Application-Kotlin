@@ -1,11 +1,11 @@
 package com.sender.messages
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -16,11 +16,11 @@ import com.google.firebase.database.FirebaseDatabase
 import com.sender.R
 import com.sender.models.ChatMessage
 import com.sender.models.User
-import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat_log.*
+import kotlinx.android.synthetic.main.activity_new_message.*
 import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
 
@@ -40,6 +40,11 @@ class ChatLogActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
 
+        chatLogTopAppBar.setNavigationOnClickListener {
+            supportNavigateUpTo(Intent(this,LatestMessagesActivity::class.java))
+        }
+
+
         chatLogRecyclerView=findViewById(R.id.recyclerview_chatlog)
         typingEditTextChatLog=findViewById(R.id.typing_eddittext_chatlog)
         sendButtonChatLog=findViewById(R.id.send_button_chatlog)
@@ -48,8 +53,13 @@ class ChatLogActivity : AppCompatActivity() {
 
         fromUser = intent.getParcelableExtra<User>("USER_KEY")
 
+//        if (fromUser != null) {
+//            //chatLogTopAppBar?.title=fromUser?.username.toString()
+//            supportActionBar?.title=fromUser?.username
+//        }
+
         if (fromUser != null) {
-            supportActionBar?.title=fromUser?.username
+            chatLogTopAppBar?.title=fromUser?.username
         }
 
         listenForMessages()
@@ -59,8 +69,6 @@ class ChatLogActivity : AppCompatActivity() {
             performSendMessage()
         }
     }
-
-
 
     private fun listenForMessages(){
         val fromId=FirebaseAuth.getInstance().uid

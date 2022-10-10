@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/googleg_standard_color_18"
-        app:civ_border_width="2dp" />
+        />
 
     <TextView
         android:id="@+id/textView_toRow"
@@ -23,10 +23,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/rounded_edittext_register_login"
+        android:background="@drawable/chat_to_text_background"
         android:maxWidth="250dp"
         android:padding="16dp"
         android:text=""
+        android:textColor="?attr/colorOnSecondary"
         app:layout_constraintEnd_toStartOf="@+id/imageView_toRow"
         app:layout_constraintTop_toTopOf="parent" />
 

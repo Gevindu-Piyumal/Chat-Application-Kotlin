@@ -14,6 +14,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.sender.R
 import com.sender.models.User
 import com.squareup.picasso.Picasso
@@ -21,24 +23,26 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.activity_new_message.*
 
 class NewMessageActivity : AppCompatActivity() {
 
     private lateinit var search:androidx.appcompat.widget.SearchView
     private lateinit var newMessageRecyclerView: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_message)
+
+        newMessageTopAppBar.setNavigationOnClickListener {
+            supportNavigateUpTo(Intent(this,LatestMessagesActivity::class.java))
+        }
 
         search = findViewById(R.id.search_searchView_newMessage)
         newMessageRecyclerView = findViewById(R.id.recyclerView_newMessage)
         newMessageRecyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         search.clearFocus()
 
-        supportActionBar?.title = "Select User"
-
-//        val adapter = GroupAdapter<ViewHolder>()
-//        newMessageRecyclerView.adapter=adapter
         search.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchText(query)

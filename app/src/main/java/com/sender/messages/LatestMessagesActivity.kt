@@ -1,47 +1,78 @@
 package com.sender.messages
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
+import android.widget.Button
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.dialog.MaterialDialogs
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.sender.messages.NewMessageActivity
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.sender.R
 import com.sender.RegisterActivity
 import com.sender.models.ChatMessage
 import com.sender.models.User
 import com.sender.registerlogin.LoginActivity
 import com.sender.views.LatestMessageRow
-import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.latest_message_row.view.*
+import kotlinx.android.synthetic.main.activity_latest_messages.*
 
-class LatestMessagesActivity : AppCompatActivity() {
 
-    companion object{
-        var currentUser: User?=null
+class LatestMessagesActivity : AppCompatActivity(){
+
+    companion object {
+        var currentUser: User? = null
     }
+
     private lateinit var latestMessageRecyclerView: RecyclerView
+    private lateinit var fabNewChat:ExtendedFloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_latest_messages)
 
-        latestMessageRecyclerView=findViewById(R.id.recyclerView_latest_messages)
-        latestMessageRecyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        latestMessageRecyclerView.adapter=adapter
+        latestMessageTopAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.latest_message_nav_menu_sign_out -> {
+                    Log.d("debugLatest", "Current User")
+                    signOut()
+                    true
+                }
+
+                else -> false
+            }
+        }
+
+        latestMessageRecyclerView = findViewById(R.id.recyclerView_latest_messages)
+        fabNewChat = findViewById(R.id.new_chat_fab_latest_message)
+
+        latestMessageRecyclerView.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                DividerItemDecoration.VERTICAL
+            )
+        )
+        latestMessageRecyclerView.adapter = adapter
 
         adapter.setOnItemClickListener { item, view ->
-            Log.d("debugLatest","123")
-            val intent = Intent(this,ChatLogActivity::class.java)
+            Log.d("debugLatest", "123")
+            val intent = Intent(this, ChatLogActivity::class.java)
             val row = item as LatestMessageRow
-            intent.putExtra("USER_KEY",row.chatPartnerUser)
+            intent.putExtra("USER_KEY", row.chatPartnerUser)
+            startActivity(intent)
+        }
+
+        fabNewChat.setOnClickListener{
+            val intent = Intent(this,NewMessageActivity::class.java)
             startActivity(intent)
         }
 
@@ -50,7 +81,7 @@ class LatestMessagesActivity : AppCompatActivity() {
         listenForLatestMessages()
     }
 
-    val latestMessagesMap = HashMap<String,ChatMessage>()
+    val latestMessagesMap = HashMap<String, ChatMessage>()
 
     //updated refreshRecyclerViewMessages
     private fun refreshRecyclerViewMessages() {
@@ -67,26 +98,19 @@ class LatestMessagesActivity : AppCompatActivity() {
         }
     }
 
-//    private fun refreshRecyclerViewMessages(){
-//        adapter.clear()
-//        latestMessagesMap.values.forEach {
-//            adapter.add(LatestMessageRow(it))
-//        }
-//    }
-
-    private fun listenForLatestMessages(){
+    private fun listenForLatestMessages() {
         val fromId = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/latest-messages/$fromId")
-        ref.addChildEventListener(object:ChildEventListener{
+        ref.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val chatMessage = snapshot.getValue(ChatMessage::class.java) ?: return
-                latestMessagesMap[snapshot.key!!]=chatMessage
+                latestMessagesMap[snapshot.key!!] = chatMessage
                 refreshRecyclerViewMessages()
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
                 val chatMessage = snapshot.getValue(ChatMessage::class.java) ?: return
-                latestMessagesMap[snapshot.key!!]=chatMessage
+                latestMessagesMap[snapshot.key!!] = chatMessage
                 refreshRecyclerViewMessages()
             }
 
@@ -104,13 +128,13 @@ class LatestMessagesActivity : AppCompatActivity() {
 
     val adapter = GroupAdapter<ViewHolder>()
 
-    private fun fetchCurrentUser(){
+    private fun fetchCurrentUser() {
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-        ref.addListenerForSingleValueEvent(object:ValueEventListener{
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                currentUser=snapshot.getValue(User::class.java)
-                Log.d("debugLatest","Current User ${currentUser?.username}")
+                currentUser = snapshot.getValue(User::class.java)
+                Log.d("debugLatest", "Current User ${currentUser?.username}")
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -119,34 +143,31 @@ class LatestMessagesActivity : AppCompatActivity() {
         })
     }
 
-    private fun verifyUserIsLoggedIn(){
+    private fun verifyUserIsLoggedIn() {
         val uid = FirebaseAuth.getInstance().uid
-        if(uid==null){
+        if (uid == null) {
             val intent = Intent(this, RegisterActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item?.itemId){
-            R.id.menu_new_message ->{
-                val intent = Intent(this, NewMessageActivity::class.java)
-                startActivity(intent)
+    private fun signOut(){
+        MaterialAlertDialogBuilder(this,R.style.ThemeOverlay_App_MaterialAlertDialog)
+            .setMessage("Are you sure you would like to sign out of your Sender account?")
+            .setTitle("Sign out from Sender")
+            .setIcon(R.drawable.ic_logout_black_48dp)
+            .setNeutralButton("No"){dialog,id->
+                dialog.dismiss()
             }
-            R.id.menu_sign_out ->{
+            .setPositiveButton("Yes"){dialog,id->
                 FirebaseAuth.getInstance().signOut()
                 val intent = Intent(this, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.nav_menu,menu)
-        return super.onCreateOptionsMenu(menu)
+        .show()
     }
 }
 

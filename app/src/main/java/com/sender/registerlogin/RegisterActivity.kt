@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.sender.messages.LatestMessagesActivity
 import com.sender.models.User
@@ -33,6 +35,8 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 
         selectPhoto = findViewById(R.id.selectPhoto_imageView_register)
         username = findViewById(R.id.username_edittext_register)
@@ -77,9 +81,14 @@ class RegisterActivity : AppCompatActivity() {
     private fun performRegister(){
         Log.d("debugMain","Email is : ${email.text}")
         Log.d("debugMain","Password is : ${password.text}")
+        Log.d("debugMain","uri is : ${selectedPhotoUri}")
 
         if(username.text.isEmpty() || email.text.isEmpty()||password.text.isEmpty()){
             Toast.makeText(baseContext, "Please fill all the fields!", Toast.LENGTH_SHORT).show()
+            return
+        }
+        else if (selectedPhotoUri==null){
+            Toast.makeText(baseContext, "Please select a photo from your gallery", Toast.LENGTH_SHORT).show()
             return
         }
         else if (password.text.length<6){
